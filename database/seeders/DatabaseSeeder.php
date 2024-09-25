@@ -26,7 +26,8 @@ class DatabaseSeeder extends Seeder
             // Seeder data progetti;
             ProjectSeeder::class,
 
-            
+            // Seeder data table;
+            ProjectTagTableSeeder::class
         ]);
     }
 }

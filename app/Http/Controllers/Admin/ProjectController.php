@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\Category;
 use App\Functions\ProjectHelper;
+use App\Models\Tag;
 class ProjectController extends Controller
 {
     /**
@@ -24,9 +25,10 @@ class ProjectController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {
+    {   
         $data = Category::all();
-        return view('admin.project.create',compact('data'));
+        $tags = Tag::all();
+        return view('admin.project.create',compact('data','tags'));
     }
 
     /**
@@ -35,13 +37,15 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-    
         $project = new Project;
         $data['slug'] = ProjectHelper::generateSlug($data['title'], Project::class);
         $project->fill($data);
-
         $project->save();
+        if(array_key_exists('tags',$data)){
+            $project->tags()->attach($data['tags']);
+        }
 
+       
         return redirect()->route('admin.project.index');
     }
 
@@ -49,18 +53,20 @@ class ProjectController extends Controller
      * Display the specified resource.
      */
     public function show(string $id)
-    {
+    {   
+        
         $project = Project::find($id);
-        return view('admin.project.show', compact('project'));
+        return view('admin.project.show', compact('project',));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
-    {
+    {   
+        $data = Category::all();
         $project = Project::find($id);
-        return view('admin.project.edit', compact('project'));
+        return view('admin.project.edit', compact('project','data'));
     }
 
     /**
@@ -68,12 +74,14 @@ class ProjectController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $project = Project::find($id);
-        $project->title = $request->input('title');
-        $project->description = $request->input('description');
         
-        $project->save();
-        return redirect("/admin/project")->with('success', 'Item updated successfully');
+        $data = $request->all();
+        $project = Project::find($id);
+
+        $project->update($data);
+
+        return redirect()->route('admin.project.index');
+    
     }
 
     /**

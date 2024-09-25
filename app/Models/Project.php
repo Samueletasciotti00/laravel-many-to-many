@@ -14,6 +14,10 @@ class Project extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function tags(){
+        return $this->belongsToMany(Tag::class);
+    }
+
     // Fillable delle colonne
     protected $fillable = ['title','slug','description','category_id'];
 }

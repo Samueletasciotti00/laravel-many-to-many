@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Guest\PageController;
 use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Models\Category;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +30,7 @@ Route::middleware(['auth', 'verified'])
 
         // Project controller
         Route::resource('project', ProjectController::class);
+        Route::resource('category', CategoryController::class);
     });
     
 

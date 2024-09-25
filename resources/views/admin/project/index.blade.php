@@ -17,7 +17,8 @@
                 <th scope="col">Title</th>
                 <th scope="col">Slug</th>
                 <th scope="col">Description</th>
-                <th scope="col">TYPE</th>
+                <th scope="col">CATEGORY</th>
+                <th scope="col">TAG</th>
                 <th scope="col">OPTIONS</th>
             </tr>
         </thead>
@@ -30,6 +31,20 @@
                 <td>{{ $project->description }}</td>
                 <td><button type="button" class="btn btn-outline-warning">{{ $project->category?->name }}</button>
                 </td>
+
+                <!-- FOR else per i TAG -->
+                <td>
+
+                @forelse($project->tags as $tag)
+                <button type="button" class="btn btn-secondary mb-1">
+                    {{$tag->name}}
+                </button>
+                @empty
+
+                @endforelse
+
+                </td>
+
 
                 <!-- DELETE -->
                 <td>
