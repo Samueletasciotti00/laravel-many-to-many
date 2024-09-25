@@ -20,9 +20,13 @@ class DatabaseSeeder extends Seeder
             // Seeder data categorie;
             CategoryTableSeeder::class,
 
-            // Seeder data progetti;
-            ProjectSeeder::class
+            // Seeder tabella tags;
+            TagsTableSeeder::class,
 
+            // Seeder data progetti;
+            ProjectSeeder::class,
+
+            
         ]);
     }
 }

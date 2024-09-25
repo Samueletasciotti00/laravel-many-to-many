@@ -18,6 +18,7 @@
                 <th scope="col">Slug</th>
                 <th scope="col">Description</th>
                 <th scope="col">TYPE</th>
+                <th scope="col">OPTIONS</th>
             </tr>
         </thead>
         <tbody>
@@ -29,11 +30,11 @@
                 <td>{{ $project->description }}</td>
                 <td><button type="button" class="btn btn-outline-warning">{{ $project->category?->name }}</button>
                 </td>
-                <td><a class="btn btn-primary" href="{{ route('admin.project.show', $project->id) }}">SHOW</a></td>
-                <td><a class="btn btn-success" href="{{ route('admin.project.edit', $project->id) }}">MODIFY</a></td>
 
                 <!-- DELETE -->
                 <td>
+                    <a class="btn btn-primary" href="{{ route('admin.project.show', $project->id) }}">SHOW</a>
+                    <a class="btn btn-success" href="{{ route('admin.project.edit', $project->id) }}">MODIFY</a>
                     <form class="d-line" action="{{ route('admin.project.destroy', $project->id) }}" method="POST" onsubmit="return confirm('delete post ?')">
                         @csrf
                         @method('DELETE')
