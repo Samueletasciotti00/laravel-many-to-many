@@ -66,7 +66,8 @@ class ProjectController extends Controller
     {   
         $data = Category::all();
         $project = Project::find($id);
-        return view('admin.project.edit', compact('project','data'));
+        $tags = Tag::all();
+        return view('admin.project.edit', compact('project','data','tags'));
     }
 
     /**
@@ -79,7 +80,9 @@ class ProjectController extends Controller
         $project = Project::find($id);
 
         $project->update($data);
-
+        if(array_key_exists('tags',$data)){
+            $project->tags()->sync($data['tags']); 
+        }
         return redirect()->route('admin.project.index');
     
     }

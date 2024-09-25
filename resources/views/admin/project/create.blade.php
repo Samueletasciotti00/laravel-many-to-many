@@ -21,31 +21,15 @@
         </div>
 
         <div class="mb-3">
-            <!-- <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+            <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
                 @foreach($tags as $tag)
                 <input type="checkbox" class="btn-check" id="{{ $tag->id }}" autocomplete="off" value="{{ $tag->id }}" name="tags[]">
                 <label class="btn btn-outline-primary" for="{{ $tag->id }}">{{ $tag->name }}</label>
                 @endforeach
-            </div> -->
-
-
-            <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-
-                @foreach($tags as $tag)
-
-                <input
-                    type="checkbox"
-                    class="btn-check"
-                    id="{{$tag->id}}"
-                    autocomplete="off"
-                    value="{{$tag->id}}"
-                    name="tags[]">
-                <label class="btn btn-outline-primary" for="{{$tag->id}}">{{$tag->name}}</label>
-
-                @endforeach
-
-
             </div>
+
+
+            
         </div>
 
 
