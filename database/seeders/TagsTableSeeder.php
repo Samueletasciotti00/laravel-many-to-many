@@ -14,7 +14,7 @@ class TagsTableSeeder extends Seeder
     public function run(): void
     {
         // Variabie per i vari tipi di tag
-        $data = ['Landing page', 'e-commerce' ,'App', 'Mobile-App'];
+        $data = ['WebApp', 'Mobile' ,'App', 'Editor','Template'];
         
         // Eseguire un foreach
         foreach($data as $tag) {

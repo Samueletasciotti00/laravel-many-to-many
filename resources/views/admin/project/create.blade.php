@@ -27,9 +27,6 @@
                 <label class="btn btn-outline-primary" for="{{ $tag->id }}">{{ $tag->name }}</label>
                 @endforeach
             </div>
-
-
-            
         </div>
 
 

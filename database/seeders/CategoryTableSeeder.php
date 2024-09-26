@@ -15,7 +15,7 @@ class CategoryTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $data = ['JAVA', 'JAVASCRIPT', 'TYPESCRIPT', 'C#', 'PYTON'];
+        $data = ['java', 'php', 'pyton', 'C#', 'dart', 'c++'];
 
         foreach($data as $category){
             $new_category = new Category();

@@ -14,7 +14,7 @@ class CategoryController extends Controller
     public function index()
     {
         //Data
-        $categories = Category::orderBy('id','desc')->get();
+        $categories = Category::all();
 
         return view('admin.category.index', compact('categories'));
     }
@@ -32,11 +32,10 @@ class CategoryController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
+    {   
         $data = $request->all();
-    
+        
         $category = new Category;
-        $data['slug'] = ProjectHelper::generateSlug($data['title'], Category::class);
         $category->fill($data);
 
         $category->save();

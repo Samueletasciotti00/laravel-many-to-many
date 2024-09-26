@@ -2,15 +2,22 @@
 
 @section('content')
 <div class="container my-5">
-    <h1>Modifica : {{ $project->title }} </h1>
+    <h1><span class="text-danger">Modifica : </span>{{ $project->title }} </h1>
 
-    <form action="{{route('admin.project.update', $project->id)}}" method="POST">
+    <form action="{{route('admin.project.update', $project->id)}}" method="POST" class="">
         @csrf
         @method('PUT')
-        <input type="text" name="title" value="{{ $project->title }}">
-        <input type="text" name="description" value="{{ $project->description }}">
-        <select class="form-select" aria-label="Default select example">
-            <option selected>Open this select menu</option>
+
+        <!-- Title Edit -->
+        <label for="title">TITLE</label>
+        <input class="d-block m-2" type="text" name="title" value="{{ $project->title }}">
+
+        <!-- Description Edit -->
+        <label for="title">DESCRIPTION</label>
+        <input class="d-block m-2" type="text" name="description" value="{{ $project->description }}">
+
+        <select class="form-select m-2 border border-primary" aria-label="Default select example" name="category_id">
+            <option value="" disabled selected>Open this select menu</option>
             @foreach ($data as $category)
             <option value="{{ $category->id }}">{{ $category->name }}</option>
 
@@ -20,7 +27,7 @@
 
         <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
                 @foreach($tags as $tag)
-                <input type="checkbox" class="btn-check" id="{{ $tag->id }}" autocomplete="off" value="{{ $tag->id }}" name="tags[]">
+                <input type="checkbox" class="btn-check" id="{{ $tag->id }}" autocomplete="off" value="{{ $tag->id }}" name="tags[]" @if(in_array($tag->id, $selectedTags)) checked @endif>
                 <label class="btn btn-outline-primary" for="{{ $tag->id }}">{{ $tag->name }}</label>
                 @endforeach
             </div>

@@ -35,7 +35,8 @@ class ProjectController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
+    {   
+        
         $data = $request->all();
         $project = new Project;
         $data['slug'] = ProjectHelper::generateSlug($data['title'], Project::class);
@@ -67,7 +68,14 @@ class ProjectController extends Controller
         $data = Category::all();
         $project = Project::find($id);
         $tags = Tag::all();
-        return view('admin.project.edit', compact('project','data','tags'));
+        // $category = Category::all();
+
+        // Gestione della select nella checkbox;
+        $selectedTags = $project->tags->pluck('id')->toArray();
+
+        // Gestione della select per i linguaggi;
+        // $selectedCategory = $project->category->pluck('id')->toArray();
+        return view('admin.project.edit', compact('project','data','tags','selectedTags'));
     }
 
     /**
@@ -80,8 +88,21 @@ class ProjectController extends Controller
         $project = Project::find($id);
 
         $project->update($data);
+
+        // Validazione dei valori di tag;
+        $request->validate([
+            'tags' => 'array',
+            'tags.*' => 'integer|exists:tags,id', 
+        ]);
+        
+
+       $project->tags()->sync($request->input('tags',[]));
+
+
         if(array_key_exists('tags',$data)){
             $project->tags()->sync($data['tags']); 
+        } else{
+            $project->tags()->detach();
         }
         return redirect()->route('admin.project.index');
     

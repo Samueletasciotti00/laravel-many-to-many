@@ -3,7 +3,7 @@
 
         <!-- Logo -->
         <div class="logo d-flex align-items-center">
-            <i class="fa-solid fa-user-tie" style="color: #feffff; font-size: 30px; margin-right: 10px;"></i>
+            <i class="fa-solid fa-clipboard-list" style="color: #feffff; font-size: 30px; margin-right: 10px;"></i>
             <a href="{{ route('home') }}" class="text-white">Vai al Sito</a>
         </div>
 

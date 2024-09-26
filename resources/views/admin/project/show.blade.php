@@ -1,10 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>Info Progetto</h1>
+<div class="containte my-5 text-center">
+<h1>Info</h1>
 
-<h2>{{ $project->title }}</h2>
-<h4>{{ $project->title }}</h4>
-<h4>{{ $project->slug }}</h4>
-<h4>{{ $project->description }}</h4>
+<h2><span class="text-danger">Nome Progetto :</span> {{ $project->title }}</h2>
+<h4><span class="text-danger">ID : </span>{{ $project->id }}</h4>
+<h4><span class="text-danger">SLUG : </span>{{ $project->slug }}</h4>
+<h4><span class="text-danger">Description :  </span>{{ $project->description }}</h4>
+</div>
 @endsection

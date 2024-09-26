@@ -3,8 +3,10 @@
 @section('content')
 <h1>Progetti</h1>
 
+<a class="btn btn-danger" href="{{ route('admin.category.create') }}">Crea un nuovo progetto</a>
 
 <ul>
+    <div class="container-fluid my-5">
     <table class="table">
         <thead>
             <tr>
@@ -18,12 +20,11 @@
             <tr>
                 <th scope="row">{{ $category->id }}</th>
                 <td>{{ $category->name }}</td>
-                <td><button type="button" class="btn btn-outline-warning">{{ $category->category?->name }}</button>
-                </td>
+
                 
                 <!-- DELETE -->
                 <td>
-                    <a class="btn btn-primary" href="{{ route('admin.category.show', $category->id) }}">SHOW</a>
+
                     <a class="btn btn-success" href="{{ route('admin.category.edit', $category->id) }}">MODIFY</a>
                     <form class="d-line" action="{{ route('admin.category.destroy', $category->id) }}" method="POST" onsubmit="return confirm('delete post ?')">
                         @csrf
@@ -37,6 +38,8 @@
             @endforeach
         </tbody>
     </table>
+    </div>
+   
 
 
 </ul>
