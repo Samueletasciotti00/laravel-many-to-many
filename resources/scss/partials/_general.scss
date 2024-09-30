@@ -29,6 +29,10 @@ a {
 
 #page {
     height: 100vh;
+    width: 100%;
     overflow-y: scroll;
-    // scrollbar-width: none;
+}
+
+.thumb{
+    width: 150px;
 }

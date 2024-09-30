@@ -19,5 +19,5 @@ class Project extends Model
     }
 
     // Fillable delle colonne
-    protected $fillable = ['title','slug','description','category_id','category'];
+    protected $fillable = ['title','slug','description','category_id','category','img','img_original_name'];
 }

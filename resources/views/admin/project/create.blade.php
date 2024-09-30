@@ -5,7 +5,7 @@
 <div class="container my-5">
     <h1>Create</h1>
 
-    <form action="{{route('admin.project.store')}}" method="POST">
+    <form action="{{route('admin.project.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="mb-3">
@@ -38,8 +38,22 @@
             @endforeach
 
         </select>
+
+        <label for="file">Carica immagine</label>
+        <input type="file" name="img" onchange="showImage(event)">
+
+        <div>
+            <img id="thumb" class="thumb" src="/img/placeholder-img.jpg" alt="">
+        </div>
         <button class="button-17" type="submit">Update</button>
     </form>
 </div>
 
+
+<script>
+    function showImage(event) {
+       const thumb = document.getElementById('thumb');
+       thumb.src = URL.createObjectURL(event.target.files[0]);
+    }
+</script>
 @endsection

@@ -13,7 +13,8 @@
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">#</th>
+                <th scope="col">#ID</th>
+                <th scope="col">IMG</th>
                 <th scope="col">Title</th>
                 <th scope="col">Slug</th>
                 <th scope="col">Description</th>
@@ -25,7 +26,10 @@
         <tbody>
             @foreach ($projects as $project)
             <tr>
-                <th scope="row">{{ $project->id }}</th>
+                <th>{{ $project->id }}</th>
+                <th>
+                    <img class="thumb" src="{{ asset('storage/' . $project->img) }}" alt="{{ $project->img_original_name }}">
+                </th>
                 <td>{{ $project->title }}</td>
                 <td>{{ $project->slug }}</td>
                 <td>{{ $project->description }}</td>
@@ -35,13 +39,13 @@
                 <!-- FOR else per i TAG -->
                 <td>
 
-                @forelse($project->tags as $tag)
-                <button type="button" class="btn btn-secondary mb-1">
-                    {{$tag->name}}
-                </button>
-                @empty
+                    @forelse($project->tags as $tag)
+                    <button type="button" class="btn btn-secondary mb-1">
+                        {{$tag->name}}
+                    </button>
+                    @empty
 
-                @endforelse
+                    @endforelse
 
                 </td>
 

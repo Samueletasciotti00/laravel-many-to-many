@@ -8,6 +8,8 @@ use App\Models\Project;
 use App\Models\Category;
 use App\Functions\ProjectHelper;
 use App\Models\Tag;
+use Illuminate\Support\Facades\Storage;
+
 class ProjectController extends Controller
 {
     /**
@@ -38,10 +40,23 @@ class ProjectController extends Controller
     {   
         
         $data = $request->all();
+
+        
         $project = new Project;
         $data['slug'] = ProjectHelper::generateSlug($data['title'], Project::class);
+        
+
+        if(array_key_exists('img',$data)){
+            $img = Storage::put('uploads', $data['img']);
+            $img_original_name = $request->file('img')->getClientOriginalName();
+            $data['img'] = $img;
+            $data['img_original_name'] = $img_original_name;
+        }
+
         $project->fill($data);
         $project->save();
+
+
         if(array_key_exists('tags',$data)){
             $project->tags()->attach($data['tags']);
         }
